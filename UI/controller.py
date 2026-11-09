@@ -59,5 +59,5 @@ class Controller:
             self._view._list_view.controls.append(ft.Text(str(libro)))
 
         if self._model.get_libri_filtrati(self.biblioteca_selezionata, self.genere_selezionato)==[]:
-            self._view._list_view.controls.append(ft.Text("La ricerca non ha prodotto risultati"))
+            self._view.show_alert('Nessun libro corrisponde ai criteri di ricerca')
 
