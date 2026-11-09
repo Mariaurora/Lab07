@@ -20,6 +20,12 @@ class View:
 
         # Controller
         self.controller = None
+        #MENU A TENDINA
+        self._dd_biblioteche = None
+        self._dd_genere = None
+
+        #LIST VIEW
+        self._list_view= None
 
     def show_alert(self, messaggio):
         self.alert.show_alert(messaggio)
@@ -37,9 +43,22 @@ class View:
 
         # --- Sezione 2: Filtraggio ---
         # TODO
+        # MENU A TENDINA
+        self._dd_biblioteche= ft.Dropdown(label="Biblioteca", on_select=self.controller.handler_dd_biblioteche)
+        #POPOLO DD
+        self.controller.popolo_dd_biblioteche()
+
+        self._dd_genere = ft.Dropdown(label="Genere", on_select=self.controller.handler_dd_genere)
+        # POPOLO DD
+        self.controller.popolo_dd_genere()
+
+
+        
 
         # Sezione 3: Libri
         # TODO
+        btn_libri = ft.Button(content="Libri", on_click=self.controller.handler_libri)
+        self._list_view= ft.ListView(expand=True)
 
         # --- Toggle Tema ---
         self.toggle_cambia_tema = ft.Switch(label="Tema scuro", value=True, on_change=self.cambia_tema)
@@ -54,8 +73,12 @@ class View:
 
             # Sezione 2: Filtraggio
             # TODO
+            ft.Row([self._dd_biblioteche,self._dd_genere], alignment= ft.MainAxisAlignment.CENTER),
+            ft.Divider(),
 
             # Sezione 3: Libri
+            ft.Row([btn_libri], alignment= ft.MainAxisAlignment.CENTER),
+            self._list_view
             # TODO
         )
 

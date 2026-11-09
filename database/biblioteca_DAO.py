@@ -8,6 +8,22 @@ from model.biblioteca_DTO import Biblioteca
 
 class BibliotecaDAO:
     def __init__(self):
-        pass
+        self._cnx=DBConnect.get_connection()
+
+    def read_bibblioteca(self):
+        query="""SELECT id, nome, indirizzo
+                 FROM biblioteca"""
+        cursor=self._cnx.cursor()
+        cursor.execute(query)
+
+        lista_biblioteche=[]
+        for row in cursor:
+            biblioteca=Biblioteca(*row)
+            lista_biblioteche.append(biblioteca)
+        return lista_biblioteche
+
+
+
+
 
     # TODO
